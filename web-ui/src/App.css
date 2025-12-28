@@ -1,0 +1,214 @@
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Piano Container */
+.piano-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.piano-hint {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.control-group label {
+  font-weight: 500;
+  color: #333;
+}
+
+.control-group input[type="range"] {
+  width: 100%;
+  max-width: 300px;
+}
+
+.temperature-hint {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #e0e0e0;
+  color: #333;
+}
+
+button:hover:not(:disabled) {
+  background: #d0d0d0;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background: #3498db;
+  color: white;
+}
+
+button.primary:hover:not(:disabled) {
+  background: #2980b9;
+}
+
+button.secondary {
+  background: #95a5a6;
+  color: white;
+}
+
+button.secondary:hover:not(:disabled) {
+  background: #7f8c8d;
+}
+
+/* Error */
+.error {
+  padding: 1rem;
+  background: #fee;
+  border: 1px solid #e74c3c;
+  border-radius: 6px;
+  color: #c0392b;
+}
+
+/* Loading */
+.loading-audio {
+  text-align: center;
+  padding: 0.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Harmony Display */
+.harmony-display {
+  padding: 1rem;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.harmony-display.empty {
+  text-align: center;
+  color: #888;
+  padding: 2rem;
+}
+
+.voice-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.voice-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.voice-name {
+  font-weight: 600;
+  width: 70px;
+  flex-shrink: 0;
+}
+
+.notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.note {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-family: monospace;
+  color: white;
+  min-width: 40px;
+  text-align: center;
+}
+
+.note.rest {
+  color: #999;
+  background: transparent !important;
+  border: 1px dashed #ccc;
+}
+
+/* Footer */
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* React Piano overrides */
+.ReactPiano__Key--active {
+  background: #3498db !important;
+}
+
+.ReactPiano__Key--accidental.ReactPiano__Key--active {
+  background: #2980b9 !important;
+}

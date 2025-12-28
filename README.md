@@ -12,7 +12,34 @@ uv sync
 source .venv/bin/activate
 ```
 
-## Usage
+## Web UI
+
+A React-based web interface for interactive harmonization.
+
+### Running the Web UI
+
+**Terminal 1 - Start the backend:**
+```bash
+.venv/bin/uvicorn coconet.web.app:app --reload --port 8000
+```
+
+**Terminal 2 - Start the frontend:**
+```bash
+cd web-ui
+npm install  # first time only
+npm run dev
+```
+
+Open http://localhost:5173 in your browser.
+
+### Features
+- Interactive piano keyboard to input melodies
+- Real-time audio playback with soundfont samples
+- Temperature control for creativity
+- Download harmonized MIDI files
+- Visual display of all 4 voices
+
+## Python API
 
 ### Quick Start - Harmonize a Melody
 
@@ -72,6 +99,34 @@ score.write("musicxml", "harmonized.xml")
 | `num_iterations` | 100 | Gibbs sampling iterations (more = better quality, slower) |
 | `melody_voice` | 0 | Which voice has the melody (0=Soprano, 1=Alto, 2=Tenor, 3=Bass) |
 
+## REST API
+
+The FastAPI backend provides these endpoints:
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/health` | Health check and model status |
+| POST | `/api/harmonize` | Harmonize a melody |
+
+### POST /api/harmonize
+
+```bash
+curl -X POST http://localhost:8000/api/harmonize \
+  -H "Content-Type: application/json" \
+  -d '{"melody": [60, 62, 64, 65, 67], "temperature": 0.8}'
+```
+
+Response:
+```json
+{
+  "soprano": [60, 62, 64, 65, 67],
+  "alto": [55, 57, 60, 60, 62],
+  "tenor": [48, 50, 52, 53, 55],
+  "bass": [36, 38, 40, 41, 43],
+  "midi_base64": "..."
+}
+```
+
 ## Training
 
 To train your own model:
@@ -99,7 +154,17 @@ coconet/
 ├── model.py         # Coconet neural network architecture
 ├── data.py          # Data loading and preprocessing
 ├── train.py         # Training script
-└── harmonize.py     # Inference and harmonization utilities
+├── harmonize.py     # Inference and harmonization utilities
+└── web/             # FastAPI backend
+    ├── app.py       # Application setup
+    └── routes.py    # API endpoints
+
+web-ui/              # React frontend
+├── src/
+│   ├── components/  # Piano, controls, display
+│   ├── hooks/       # Audio playback
+│   └── api/         # Backend client
+└── package.json
 ```
 
 ## How It Works
